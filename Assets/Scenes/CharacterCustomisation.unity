@@ -2406,7 +2406,6 @@ MonoBehaviour:
   speed: 5
   jumpSpeed: 3
   gravity: 7
-  canMove: 1
 --- !u!143 &1097378719
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4554,7 +4553,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012175248}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39766e211b726cf47a827a0bb2fc4931, type: 3}
   m_Name: 
@@ -4629,8 +4628,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012175248}
-  m_LocalRotation: {x: -0.12848443, y: 0.3591752, z: -0.049996674, w: -0.9230305}
-  m_LocalPosition: {x: 529.5046, y: 23.241194, z: 493.78198}
+  m_LocalRotation: {x: -0.04173631, y: 0.5024397, z: -0.024291934, w: -0.8632626}
+  m_LocalPosition: {x: 529.7209, y: 22.76407, z: 494.57352}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

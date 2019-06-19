@@ -1,8 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//you will need to change Scenes
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement; //you will need to change Scenes
 
 public class CustomisationGet : MonoBehaviour {
 
@@ -11,20 +10,38 @@ public class CustomisationGet : MonoBehaviour {
 
 
     #region Start
-
     private void Start()
     {
         character = GameObject.FindGameObjectWithTag("PlayerMesh").GetComponent<SkinnedMeshRenderer>(); //our character reference connected to the Skinned Mesh Renderer via finding the Mesh
-        //Run the function LoadTexture
+        LoadTexture(); //Run the function LoadTexture
     }
     #endregion
 
     #region LoadTexture Function
-    //check to see if our save file for this character
-    //if it doesnt then load the CustomSet level
-    //if it does have a save file then load and SetTexture Skin, Hair, Mouth and Eyes from PlayerPrefs
-    //grab the gameObject in scene that is our character and set its Object name to the Characters name
+    void LoadTexture()
+    {
+        if (CharacterSave.LoadData() != null) //check to see if our save file for this character
+        {
+            CharacterData dataToLoad = CharacterSave.LoadData();
+
+            //if it does have a save file then load and SetTexture Skin, Hair, Mouth and Eyes from PlayerPrefs
+
+            SetTexture("Skin", dataToLoad.skinIndex);
+            SetTexture("Eyes", dataToLoad.mouthIndex);
+            SetTexture("Mouth", dataToLoad.eyesIndex);
+            SetTexture("Hair", dataToLoad.hairIndex);
+            SetTexture("Armour", dataToLoad.armourIndex);
+            SetTexture("Clothes", dataToLoad.clothesIndex);
+
+            character.gameObject.GetComponentInParent<GameObject>().name = dataToLoad.characterName; //grab the gameObject in scene that is our character and set its Object name to the Characters name
+        }
+        else
+        {
+            SceneManager.LoadScene("CharacterCustomisation"); //if it doesnt then load the CustomSet level
+        }
+    }
     #endregion
+
     #region SetTexture
 
 
@@ -32,9 +49,6 @@ public class CustomisationGet : MonoBehaviour {
     //the string is the name of the material we are editing, the int is the direction we are changing
     void SetTexture(string type, int index)
     {
-
-
-
 
         Texture2D tempTexture = null; //we need variables that exist only within this function
         int matIndex = 0; //these are int material index and Texture2D array of textures
@@ -47,36 +61,35 @@ public class CustomisationGet : MonoBehaviour {
             break; //break
             case "Eyes": //case eyes
                 tempTexture = Resources.Load("Character/Eyes_" + index) as Texture2D; //textures is our Resource.Load Character Skin save index we loaded in set as our Texture2D
-                matIndex = 1; //material index element number is 1
+                matIndex = 2; //material index element number is 1
                 break; //break
             case "Mouth": //case mouth
                 tempTexture = Resources.Load("Character/Mouth_" + index) as Texture2D; //textures is our Resource.Load Character Skin save index we loaded in set as our Texture2D
-                matIndex = 1; //material index element number is 1
+                matIndex = 3; //material index element number is 1
             break; //break
             case "Hair": //case hair
                 tempTexture = Resources.Load("Character/Hair_" + index) as Texture2D; //textures is our Resource.Load Character Skin save index we loaded in set as our Texture2D
-                matIndex = 1; //material index element number is 1
+                matIndex = 4; //material index element number is 1
             break; //break
             case "Armour": //case armour 
                 tempTexture = Resources.Load("Character/Armour_" + index) as Texture2D; //textures is our Resource.Load Character Skin save index we loaded in set as our Texture2D
-                matIndex = 1; //material index element number is 1
+                matIndex = 5; //material index element number is 1
             break; //break
             case "Clothes": //case skin
                 tempTexture = Resources.Load("Character/Clothes_" + index) as Texture2D; //textures is our Resource.Load Character Skin save index we loaded in set as our Texture2D
-                matIndex = 1; //material index element number is 1
+                matIndex = 6; //material index element number is 1
             break; //break
         }
 
-        
-        
-
-        
-        
         
         //now repeat for each material 
         //hair is 2
         //mouth is 3
         //eyes are 4
+
+
+
+
 
         //Material array is equal to our characters material list
         //our material arrays current material index's main texture is equal to our texture arrays current index

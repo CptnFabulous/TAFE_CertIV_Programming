@@ -7,14 +7,15 @@ public class CustomisationSet : MonoBehaviour {
 
     #region Variables
     [Header("Texture List")]
-    public List<Texture2D> skin = new List<Texture2D>(); //Texture2D List for skin,hair, mouth, eyes
+    public List<Texture2D> skin = new List<Texture2D>(); //Texture2D List for skin, hair, mouth, eyes
     public List<Texture2D> hair = new List<Texture2D>();
     public List<Texture2D> mouth = new List<Texture2D>();
     public List<Texture2D> eyes = new List<Texture2D>();
     public List<Texture2D> armour = new List<Texture2D>();
     public List<Texture2D> clothes = new List<Texture2D>();
     [Header("Index")]
-    int skinIndex, eyesIndex, mouthIndex, hairIndex, armourIndex, clothesIndex; //index numbers for our current skin, hair, mouth, eyes textures
+    [HideInInspector]
+    public int skinIndex, eyesIndex, mouthIndex, hairIndex, armourIndex, clothesIndex; //index numbers for our current skin, hair, mouth, eyes textures
 
     [Header("Renderer")]
     //renderer for our character mesh so we can reference a material list
@@ -112,22 +113,19 @@ public class CustomisationSet : MonoBehaviour {
 
     #region SetTexture
 
-
-
     //Create a function that is called SetTexture it should contain a string and int
     //the string is the name of the material we are editing, the int is the direction we are changing
-    //we need variables that exist only within this function
-    //these are ints index numbers, max numbers, material index and Texture2D array of textures
-    //inside a switch statement that is swapped by the string name of our material
-
-    void SetTexture(string type, int dir)
+    void SetTexture(string type, int dir) 
     {
+        //we need variables that exist only within this function
+        //these are ints index numbers, max numbers, material index and Texture2D array of textures
         int index = 0, max = 0, matIndex = 0;
         Texture2D[] textures = new Texture2D[0];
 
+        //inside a switch statement that is swapped by the string name of our material
         #region Switch Material
 
-        switch(type)
+        switch (type)
         {
             case "Skin":
                 index = skinIndex;
@@ -255,13 +253,12 @@ public class CustomisationSet : MonoBehaviour {
     #endregion
 
     #region Save
-    void Save()
+    void Save() //Function called Save this will allow us to save our indexes 
     {
-
+        CharacterSave.SaveData(this);
     }
-    //Function called Save this will allow us to save our indexes 
-    //SetInt for SkinIndex, HairIndex, MouthIndex, EyesIndex
-    //SetString CharacterName
+    
+    
     #endregion
 
     #region OnGUI
@@ -287,7 +284,7 @@ public class CustomisationSet : MonoBehaviour {
 
         }
         #endregion
-        i++;
+        i++; //move down the screen with the int using ++ each grouping of GUI elements are moved using this
         #region Set Eyes
         if (GUI.Button(new Rect(0.25f * screenW, screenH + i * (0.5f * screenH), 0.5f * screenW, 0.5f * screenH), "<"))
         {
@@ -303,7 +300,7 @@ public class CustomisationSet : MonoBehaviour {
 
         }
         #endregion
-        i++;
+        i++; //move down the screen with the int using ++ each grouping of GUI elements are moved using this
         #region Set Mouth
         if (GUI.Button(new Rect(0.25f * screenW, screenH + i * (0.5f * screenH), 0.5f * screenW, 0.5f * screenH), "<"))
         {
@@ -319,7 +316,7 @@ public class CustomisationSet : MonoBehaviour {
 
         }
         #endregion
-        i++;
+        i++; //move down the screen with the int using ++ each grouping of GUI elements are moved using this
         #region Set Hair
         if (GUI.Button(new Rect(0.25f * screenW, screenH + i * (0.5f * screenH), 0.5f * screenW, 0.5f * screenH), "<"))
         {
@@ -335,7 +332,7 @@ public class CustomisationSet : MonoBehaviour {
 
         }
         #endregion
-        i++;
+        i++; //move down the screen with the int using ++ each grouping of GUI elements are moved using this
         #region Set Armour
         if (GUI.Button(new Rect(0.25f * screenW, screenH + i * (0.5f * screenH), 0.5f * screenW, 0.5f * screenH), "<"))
         {
@@ -351,7 +348,7 @@ public class CustomisationSet : MonoBehaviour {
 
         }
         #endregion
-        i++;
+        i++; //move down the screen with the int using ++ each grouping of GUI elements are moved using this
         #region Set Clothes
         if (GUI.Button(new Rect(0.25f * screenW, screenH + i * (0.5f * screenH), 0.5f * screenW, 0.5f * screenH), "<"))
         {
@@ -367,7 +364,7 @@ public class CustomisationSet : MonoBehaviour {
 
         }
         #endregion
-        i++;
+        i++; //move down the screen with the int using ++ each grouping of GUI elements are moved using this
         #region Random and Reset
         //create 2 buttons one Random and one Reset
         if (GUI.Button(new Rect(0.25f * screenW, screenH + i * (0.5f * screenH), screenW, 0.5f * screenH), "Random"))
@@ -392,20 +389,21 @@ public class CustomisationSet : MonoBehaviour {
             SetTexture("Clothes", clothesIndex = 0);
         }
         #endregion
-        i++;
-        #region Name
-        characterName = GUI.TextField(new Rect(0.25f * screenW, screenH + i * (0.5f * screenH), 2f * screenW, 0.5f * screenH), characterName, 16);
+        i++; //move down the screen with the int using ++ each grouping of GUI elements are moved using this
+        #region Character Name
+        characterName = GUI.TextField(new Rect(0.25f * screenW, screenH + i * (0.5f * screenH), 2f * screenW, 0.5f * screenH), characterName, 16); //name of our character equals a GUI TextField that holds our character name and limit of characters
         #endregion
-        i++;
-        #region Save Character
-        if (GUI.Button(new Rect(0.25f * screenW, screenH + i * (0.5f * screenH), 2f * screenW, 0.5f * screenH), "Save and Play"))
+        i++; //move down the screen with the int using ++ each grouping of GUI elements are moved using this
+        #region Save & Play
+        if (GUI.Button(new Rect(0.25f * screenW, screenH + i * (0.5f * screenH), 2f * screenW, 0.5f * screenH), "Save and Play")) //GUI Button called Save and Play
         {
-            Save();
+            Save(); //this button will run the save function and also load into the game level
             SceneManager.LoadScene(2);
         }
         #endregion
-        i = 0;
+        i = 0;//reset so we can start the next row of GUI elements from the top
 
+        #region Character Class
         GUI.Box(new Rect(3.25f * screenW, screenH + i * (0.5f * screenH), 3f * screenW, 0.5f * screenH), "Character Class");
         i++;
         //GUI.Box(new Rect(3.75f * screenW, screenH + i * (0.5f * screenH), 2f * screenW, 0.5f * screenH), selectedClass[selectedIndex]);
@@ -431,7 +429,9 @@ public class CustomisationSet : MonoBehaviour {
             }
             ChooseClass(selectedIndex);
         }
+        #endregion
 
+        #region Skill Points
         GUI.Box(new Rect(3.25f * screenW, 2f * screenH, 3f * screenW, 0.5f * screenH), "Points: " + skillPoints);
 
         for (int s = 0; s < 6; s++)
@@ -456,11 +456,13 @@ public class CustomisationSet : MonoBehaviour {
                 }
             }
         }
+        #endregion
+
 
 
         //i++;
 
-        
+
 
 
 
@@ -587,16 +589,6 @@ public class CustomisationSet : MonoBehaviour {
     }
 
 
-
-
-
-    #region Character Name and Save & Play
-    //name of our character equals a GUI TextField that holds our character name and limit of characters
-    //move down the screen with the int using ++ each grouping of GUI elements are moved using this
-
-    //GUI Button called Save and Play
-    //this button will run the save function and also load into the game level
-    #endregion
     #endregion
 }
 

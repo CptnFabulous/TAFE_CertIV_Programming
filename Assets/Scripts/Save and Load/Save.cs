@@ -30,7 +30,7 @@ public static class Save
         }
         else
         {
-            Debug.Log("Error");
+            Debug.Log("Error, save file not found in " + path);
             return null;
         }
     }

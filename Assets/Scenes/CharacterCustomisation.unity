@@ -3912,7 +3912,7 @@ MonoBehaviour:
   clothes: []
   character: {fileID: 0}
   skinMax: 4
-  eyesMax: 5
+  eyesMax: 4
   mouthMax: 3
   hairMax: 4
   armourMax: 11

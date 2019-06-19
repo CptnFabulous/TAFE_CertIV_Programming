@@ -98,7 +98,7 @@ public class CustomisationSet : MonoBehaviour {
         SetTexture("Hair", hairIndex = 0);
         SetTexture("Armour", armourIndex = 0);
         SetTexture("Clothes", clothesIndex = 0);
-        ChooseClass(0);
+        ChooseClass(selectedIndex);
 
         #region do this after making the function SetTexture
         //SetTexture skin, hair, mouth, eyes to the first texture 0
@@ -406,11 +406,11 @@ public class CustomisationSet : MonoBehaviour {
         #endregion
         i = 0;
 
-        GUI.Box(new Rect(3.75f * screenW, screenH + i * (0.5f * screenH), 3f * screenW, 0.5f * screenH), "Character Class");
+        GUI.Box(new Rect(3.25f * screenW, screenH + i * (0.5f * screenH), 3f * screenW, 0.5f * screenH), "Character Class");
         i++;
         //GUI.Box(new Rect(3.75f * screenW, screenH + i * (0.5f * screenH), 2f * screenW, 0.5f * screenH), selectedClass[selectedIndex]);
 
-        if (GUI.Button(new Rect(3.75f * screenW, screenH + i * (0.5f * screenH), 0.5f * screenW, 0.5f * screenH), "<"))
+        if (GUI.Button(new Rect(3.25f * screenW, screenH + i * (0.5f * screenH), 0.5f * screenW, 0.5f * screenH), "<"))
         {
             selectedIndex--;
             if (selectedIndex < 0)
@@ -420,9 +420,9 @@ public class CustomisationSet : MonoBehaviour {
             ChooseClass(selectedIndex);
         }
 
-        GUI.Box(new Rect(4.25f * screenW, screenH + i * (0.5f * screenH), 2f * screenW, 0.5f * screenH), selectedClass[selectedIndex]);
+        GUI.Box(new Rect(3.75f * screenW, screenH + i * (0.5f * screenH), 2f * screenW, 0.5f * screenH), selectedClass[selectedIndex]);
 
-        if (GUI.Button(new Rect(6.25f * screenW, screenH + i * (0.5f * screenH), 0.5f * screenW, 0.5f * screenH), ">"))
+        if (GUI.Button(new Rect(5.75f * screenW, screenH + i * (0.5f * screenH), 0.5f * screenW, 0.5f * screenH), ">"))
         {
             selectedIndex++;
             if (selectedIndex > selectedClass.Length - 1)
@@ -432,19 +432,29 @@ public class CustomisationSet : MonoBehaviour {
             ChooseClass(selectedIndex);
         }
 
-        GUI.Box(new Rect(3.75f * screenW, 2f * screenH, 2f * screenW, 0.5f * screenH), "Points: " + skillPoints);
+        GUI.Box(new Rect(3.25f * screenW, 2f * screenH, 3f * screenW, 0.5f * screenH), "Points: " + skillPoints);
 
         for (int s = 0; s < 6; s++)
         {
             if (skillPoints > 0)
             {
-                if (GUI.Button(new Rect(), "+"))
+                if (GUI.Button(new Rect(5.75f * screenW, 2.5f * screenH + s * (0.5f * screenH), 0.5f * screenW, 0.5f * screenH), "+"))
                 {
                     skillPoints--;
                     tempStats[s]++;
                 }
             }
-            GUI.Box(new Rect(3.75f * screenW, 2.5f * screenH + s * (0.5f * screenH), 2f * screenW, 0.5f * screenH), statArray[s] + ": " + tempStats[s] + stats[s]);
+
+            GUI.Box(new Rect(3.75f * screenW, 2.5f * screenH + s * (0.5f * screenH), 2f * screenW, 0.5f * screenH), statArray[s] + ": " + (tempStats[s] + stats[s]));
+
+            if (skillPoints < 10 && tempStats[s] > 0)
+            {
+                if (GUI.Button(new Rect(3.25f * screenW, 2.5f * screenH + s * (0.5f * screenH), 0.5f * screenW, 0.5f * screenH), "-"))
+                {
+                    skillPoints++;
+                    tempStats[s]--;
+                }
+            }
         }
 
 

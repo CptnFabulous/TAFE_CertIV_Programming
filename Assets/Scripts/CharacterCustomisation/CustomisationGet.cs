@@ -23,6 +23,7 @@ public class CustomisationGet : MonoBehaviour {
         if (CharacterSave.LoadData() != null) //check to see if our save file for this character
         {
             CharacterData dataToLoad = CharacterSave.LoadData();
+            print(dataToLoad);
 
             //if it does have a save file then load and SetTexture Skin, Hair, Mouth and Eyes from PlayerPrefs
 

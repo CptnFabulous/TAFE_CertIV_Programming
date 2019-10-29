@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -758,6 +758,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272226155}
   m_CullTransparentMesh: 0
+--- !u!137 &337306680 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 137681611782010876, guid: 6e315a96afb0538408bfe70251a273ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 74680289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &346450818
 GameObject:
   m_ObjectHideFlags: 0
@@ -2386,6 +2392,7 @@ GameObject:
   - component: {fileID: 1097378730}
   - component: {fileID: 1097378731}
   - component: {fileID: 1097378732}
+  - component: {fileID: 1097378733}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2674,6 +2681,19 @@ MonoBehaviour:
   equippedLocation: []
   currentWeapon: {fileID: 0}
   currentHelmet: {fileID: 0}
+--- !u!114 &1097378733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097378717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc834f4fa3cd074dafc2c8a9fd788ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 337306680}
 --- !u!1 &1107499106
 GameObject:
   m_ObjectHideFlags: 0
